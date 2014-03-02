@@ -60,9 +60,9 @@ c:\oracle_windows\temp
 Install steps 
 -------------
 
-startup powershell.exe
+startup powershell.exe  
 
-provide permissions to execute powershell scripts
+provide permissions to execute powershell scripts  
     Set-ExecutionPolicy RemoteSigned and say yes
 
 Execute the following scripts	
