@@ -63,9 +63,12 @@ Install steps
 startup powershell.exe  
 
 provide permissions to execute powershell scripts  
-    Set-ExecutionPolicy RemoteSigned and say yes
 
-Execute the following scripts	
+     Set-ExecutionPolicy RemoteSigned
+
+and say yes
+
+Execute the following scripts   
 - c:\oracle_windows\scripts\java_install.ps1
 - c:\oracle_windows\scripts\weblogic_10.3.6_install.ps1
 - c:\oracle_windows\scripts\weblogic_10.3.6_patch.ps1
