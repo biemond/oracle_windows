@@ -44,15 +44,19 @@ c:\oracle_windows\templates
 - fmw_silent_soa.rsp
 - fmw_silent_osb.rsp
 - nodemanager.properties
+- domain_osb_soa.py
+- startupAdminserver.py
 
 c:\oracle_windows\scripts
-- folders.ps1
 - java_install.ps1
 - weblogic_10.3.6_install.ps1
 - weblogic_10.3.6_patch.ps1
 - soa_suite_install.ps1
 - osb_install.ps1
 - soa_suite_patch.ps1
+- weblogic_nodemanager.ps1
+- weblogic_domain.ps1
+- startup_adminserver.ps1
 
 c:\oracle_windows\temp
 - empty, used to extract the zip files
@@ -77,6 +81,8 @@ Execute the following scripts
 - c:\oracle_windows\scripts\soa_suite_patch.ps1
 - c:\oracle_windows\scripts\weblogic_nodemanager.ps1
 - c:\oracle_windows\scripts\weblogic_domain.ps1
+- c:\oracle_windows\scripts\startup_adminserver.ps1
+
 
 
 
