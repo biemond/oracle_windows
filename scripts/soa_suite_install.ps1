@@ -1,11 +1,19 @@
-$env:JAVA_HOME = "c:\java\jdk1.7.51"
-$env:path = $env:path + ";c:\java\jdk1.7.51\bin"
-mkdir c:\oracle_windows\temp\soa
-cd c:\oracle_windows\temp\soa
-jar xf c:\oracle_windows\binaries\ofm_soa_generic_11.1.1.7.0_disk1_1of2.zip
-jar xf c:\oracle_windows\binaries\ofm_soa_generic_11.1.1.7.0_disk1_2of2.zip
+$AppProps = Get-Content ../wls.properties -Raw | convertfrom-stringdata 
 
-Md "HKLM:\Software\Oracle\" 
-New-ItemProperty "HKLM:\Software\Oracle\" -Name "inst_loc" -Value "C:\\oracle\\Inventory"
+# environment vars
+$env:JAVA_HOME = "$($AppProps.java_home)"
+$env:path = $env:path + ";$($AppProps.java_home)\bin"
 
-C:\oracle_windows\temp\soa\Disk1\setup.exe -silent -response c:/oracle_windows/templates/fmw_silent_soa.rsp -waitforcompletion -ignoreSysPrereqs -jreLoc c:/java/jdk1.7.51
+# unzip the SOA SUITE software
+iex "mkdir $($AppProps.main_location)/temp/soa -ErrorAction SilentlyContinue"
+iex "cd $($AppProps.main_location)/temp/soa"
+jar xf "$($AppProps.main_location)/binaries/ofm_soa_generic_11.1.1.7.0_disk1_1of2.zip"
+jar xf "$($AppProps.main_location)/binaries/ofm_soa_generic_11.1.1.7.0_disk1_2of2.zip"
+
+# copy silent response file and add SOA Suite home to the template
+iex "(Get-Content $($AppProps.main_location)/templates/fmw_silent_soa.rsp).replace('--MDW_HOME--', '$($AppProps.mdw_dir)')  |  Out-File $($AppProps.main_location)/temp/fmw_silent_soa.rsp -Encoding ASCII -Force"
+
+# install SOA
+iex "$($AppProps.main_location)/temp/soa/Disk1/setup.exe -silent -response $($AppProps.main_location)/temp/fmw_silent_soa.rsp -waitforcompletion -ignoreSysPrereqs -jreLoc $($AppProps.java_home)"
+
+cd "$($AppProps.main_location)/scripts"

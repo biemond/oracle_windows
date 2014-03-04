@@ -1,5 +1,11 @@
-Oracle FMW SOA Suite & OSB install for Windows with powershell
-==============================================================
+Oracle FMW SOA Suite & OSB Silent install for Windows with powershell
+=====================================================================
+
+Tested on Windows 7 SP1, .net 4.0 & Powershell 3.0
+.net 4.0 http://www.microsoft.com/en-us/download/details.aspx?id=17851  
+Powershell 3.0 or 4.0 http://technet.microsoft.com/en-US/scriptcenter  
+
+edit the wls.properties for your configuration  
 
 All in silent mode and without a GUI
 
@@ -59,7 +65,7 @@ c:\oracle_windows\scripts
 - startup_adminserver.ps1
 
 c:\oracle_windows\temp
-- empty, used to extract the zip files
+- empty, used to extract all the zip files plus for generated scripts
 
 Install steps 
 -------------

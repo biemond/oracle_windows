@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-   <bea-installer> 
-     <input-fields>
-       <data-value name="BEAHOME" value="C:\oracle\product\11.1\middleware" />
-   </input-fields> 
+<bea-installer> 
+    <input-fields>
+        <data-value name="BEAHOME" value="--MDW_HOME--" />
+    </input-fields> 
 </bea-installer>

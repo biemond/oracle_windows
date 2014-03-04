@@ -1,29 +1,29 @@
 
-WLHOME='C:/oracle/product/11.1/middleware/wlserver_10.3'
-DOMAIN_PATH='C:/oracle/weblogic_domains/domains/wls_osb_soa'
+WLHOME='--MDW_HOME--/wlserver_10.3'
+DOMAIN_PATH='--dom_dir--/wls_osb_soa'
 DOMAIN='wls_osb_soa'
-APP_PATH='C:/oracle/weblogic_domains/applications/wls_osb_soa'
+APP_PATH='--app_dir--/wls_osb_soa'
 DEVELOPMENT_MODE=false
 WEBLOGIC_VERSION='10.3.6'
 ADMIN_SERVER='AdminServer'
 ADMIN_USER='weblogic'
-ADMIN_PASSWORD='weblogic1'
-JAVA_HOME='C:/java/jdk1.7.51'
+ADMIN_PASSWORD='--password--'
+JAVA_HOME='--java_home--'
 
-ADM_JAVA_ARGUMENTS='-XX:PermSize=256m -XX:MaxPermSize=512m -Xms1024m -Xmx1024m -Dweblogic.Stdout=c:/oracle/logs/AdminServer.out -Dweblogic.Stderr=c:/oracle/logs/AdminServer_err.out'
-SOA_JAVA_ARGUMENTS='-XX:PermSize=512m -XX:MaxPermSize=512m -Xms1024m -Xmx1024m -Dweblogic.Stdout=c:/oracle/logs/soa_server1.out -Dweblogic.Stderr=c:/oracle/logs/soa_server1_err.out'
-BAM_JAVA_ARGUMENTS='-XX:PermSize=512m -XX:MaxPermSize=512m -Xms1024m -Xmx1024m -Dweblogic.Stdout=c:/oracle/logs/bam_server1.out -Dweblogic.Stderr=c:/oracle/logs/bam_server1_err.out'
-OSB_JAVA_ARGUMENTS='-XX:PermSize=512m -XX:MaxPermSize=512m -Xms1024m -Xmx1024m -Dweblogic.Stdout=c:/oracle/logs/osb_server1.out -Dweblogic.Stderr=c:/oracle/logs/osb_server1_err.out'
+ADM_JAVA_ARGUMENTS='-XX:PermSize=256m -XX:MaxPermSize=512m -Xms1024m -Xmx1024m -Dweblogic.Stdout=--log_dir--/AdminServer.out -Dweblogic.Stderr=--log_dir--/AdminServer_err.out'
+SOA_JAVA_ARGUMENTS='-XX:PermSize=512m -XX:MaxPermSize=512m -Xms1024m -Xmx1024m -Dweblogic.Stdout=--log_dir--/soa_server1.out -Dweblogic.Stderr=--log_dir--/soa_server1_err.out'
+BAM_JAVA_ARGUMENTS='-XX:PermSize=512m -XX:MaxPermSize=512m -Xms1024m -Xmx1024m -Dweblogic.Stdout=--log_dir--/bam_server1.out -Dweblogic.Stderr=--log_dir--/bam_server1_err.out'
+OSB_JAVA_ARGUMENTS='-XX:PermSize=512m -XX:MaxPermSize=512m -Xms1024m -Xmx1024m -Dweblogic.Stdout=--log_dir--/osb_server1.out -Dweblogic.Stderr=--log_dir--/osb_server1_err.out'
 
-SOA_REPOS_DBURL='dbserver.alfa.local'
-SOA_REPOS_DBUSER_PREFIX='DEV'
-SOA_REPOS_DBPASSWORD='Welcome01'
+SOA_REPOS_DBURL='--dburl--'
+SOA_REPOS_DBUSER_PREFIX='--dbprefix--'
+SOA_REPOS_DBPASSWORD='--dbpassword--'
 
 BPM_ENABLED=false
 BAM_ENABLED=true
 
 print('Start...wls domain')
-readTemplate('C:/oracle/product/11.1/middleware/wlserver_10.3/common/templates/domains/wls.jar')
+readTemplate('--MDW_HOME--/wlserver_10.3/common/templates/domains/wls.jar')
 
 print('Set crossdomain')
 create('base_domain','SecurityConfiguration')
@@ -34,7 +34,7 @@ cd('/')
 print('Set domain log')
 create('base_domain','Log')
 cd('/Log/base_domain')
-set('FileName','C:/oracle/logs/'+DOMAIN+'.log')
+set('FileName','--log_dir--/'+DOMAIN+'.log')
 set('FileCount',10)
 set('FileMinSize',5000)
 set('RotationType','byTime')
@@ -66,7 +66,7 @@ set('HostNameVerificationIgnored', 'True')
 cd('/Server/'+ADMIN_SERVER)
 create(ADMIN_SERVER,'Log')
 cd('/Server/'+ADMIN_SERVER+'/Log/'+ADMIN_SERVER)
-set('FileName','C:/oracle/logs/'+ADMIN_SERVER+'.log')
+set('FileName','--log_dir--/'+ADMIN_SERVER+'.log')
 set('FileCount',10)
 set('FileMinSize',5000)
 set('RotationType','byTime')
@@ -112,21 +112,21 @@ cd('/')
 setOption( "AppDir", APP_PATH )
 
 print 'Adding SOA Template'
-addTemplate('C:/oracle/product/11.1/middleware/oracle_common/common/templates/applications/oracle.applcore.model.stub.11.1.1_template.jar')
-addTemplate('C:/oracle/product/11.1/middleware/oracle_common/common/templates/applications/jrf_template_11.1.1.jar')
-addTemplate('C:/oracle/product/11.1/middleware/oracle_common/common/templates/applications/oracle.wsmpm_template_11.1.1.jar')
-addTemplate('C:/oracle/product/11.1/middleware/Oracle_SOA1/common/templates/applications/oracle.soa_template_11.1.1.jar')
+addTemplate('--MDW_HOME--/oracle_common/common/templates/applications/oracle.applcore.model.stub.11.1.1_template.jar')
+addTemplate('--MDW_HOME--/oracle_common/common/templates/applications/jrf_template_11.1.1.jar')
+addTemplate('--MDW_HOME--/oracle_common/common/templates/applications/oracle.wsmpm_template_11.1.1.jar')
+addTemplate('--MDW_HOME--/Oracle_SOA1/common/templates/applications/oracle.soa_template_11.1.1.jar')
 
 if BAM_ENABLED == true:
   print 'Adding BAM Template'
-  addTemplate('C:/oracle/product/11.1/middleware/Oracle_SOA1/common/templates/applications/oracle.bam_template_11.1.1.jar')
+  addTemplate('--MDW_HOME--/Oracle_SOA1/common/templates/applications/oracle.bam_template_11.1.1.jar')
 
 if BPM_ENABLED == true:
   print 'Adding BPM Template'
-  addTemplate('C:/oracle/product/11.1/middleware/Oracle_SOA1/common/templates/applications/oracle.bpm_template_11.1.1.jar')
+  addTemplate('--MDW_HOME--/Oracle_SOA1/common/templates/applications/oracle.bpm_template_11.1.1.jar')
 
 print 'Adding EM Template'
-addTemplate('C:/oracle/product/11.1/middleware/oracle_common/common/templates/applications/oracle.em_11_1_1_0_0_template.jar')
+addTemplate('--MDW_HOME--/oracle_common/common/templates/applications/oracle.em_11_1_1_0_0_template.jar')
 
 dumpStack();
 
@@ -219,7 +219,7 @@ set('HostNameVerificationIgnored', 'True')
 cd('/Server/soa_server1')
 create('soa_server1','Log')
 cd('/Server/soa_server1/Log/soa_server1')
-set('FileName','C:/oracle/logs/soa_server1.log')
+set('FileName','--log_dir--/soa_server1.log')
 set('FileCount',10)
 set('FileMinSize',5000)
 set('RotationType','byTime')
@@ -245,7 +245,7 @@ if BAM_ENABLED == true:
   cd('/Server/bam_server1')
   create('bam_server1','Log')
   cd('/Server/bam_server1/Log/bam_server1')
-  set('FileName','C:/oracle/logs/bam_server1.log')
+  set('FileName','--log_dir--/bam_server1.log')
   set('FileCount',10)
   set('FileMinSize',5000)
   set('RotationType','byTime')
@@ -261,7 +261,7 @@ readDomain(DOMAIN_PATH)
 setOption( "AppDir", APP_PATH )
 print('Extend...osb domain')
 
-addTemplate('C:/oracle/product/11.1/middleware/Oracle_OSB1/common/templates/applications/wlsb.jar')
+addTemplate('--MDW_HOME--/Oracle_OSB1/common/templates/applications/wlsb.jar')
 
 dumpStack();
 updateDomain()
@@ -290,7 +290,7 @@ set('HostNameVerificationIgnored', 'True')
 cd('/Server/osb_server1')
 create('osb_server1','Log')
 cd('/Server/osb_server1/Log/osb_server1')
-set('FileName','c:/oracle/logs/osb_server1.log')
+set('FileName','--log_dir--/osb_server1.log')
 set('FileCount',10)
 set('FileMinSize',5000)
 set('RotationType','byTime')
