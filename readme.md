@@ -1,19 +1,17 @@
-Oracle FMW SOA Suite & OSB Silent install for Windows with powershell
-=====================================================================
+Oracle WebLogic 11g with FMW SOA Suite & OSB Silent install for Windows
+=======================================================================
 
-Tested on Windows 7 SP1, .net 4.0 & Powershell 3.0
-.net 4.0 http://www.microsoft.com/en-us/download/details.aspx?id=17851  
-Powershell 3.0 or 4.0 http://technet.microsoft.com/en-US/scriptcenter  
+Tested on Windows 7 SP1 with .Net 4.0 & Powershell 3.0
 
-edit the wls.properties for your configuration  
+edit the wls.properties for your own configuration  
 
-All in silent mode and without a GUI
+Everything is installed and configured in silent mode (No GUI)
 
-Oracle FMW structure
+Example of an Oracle FMW structure
 - Java home C:\java\jdk1.7.51
 - Middleware home C:\oracle\product\11.1\middleware
-- log files home C:\oracle\logs
-- domains home folder C:\oracle\weblogic_domains\domains 
+- WebLogic log files home C:\oracle\logs
+- Domains home folder C:\oracle\weblogic_domains\domains 
 - Oracle inventory C:\oracle\Inventory
 
 installs
@@ -25,7 +23,7 @@ installs
 - WebLogic Nodemanager service
 - WebLogic Domain with OSB & SOA Suite
 
-WebLogic Domain ( name = wls_osb_soa  in production mode with weblogic1 as password )
+WebLogic Domain ( name = wls_osb_soa in production mode with weblogic1 as password )
 - AdminServer 7001
 - soa_server1 8001
 - bam_server1 9001
@@ -45,27 +43,6 @@ c:\oracle_windows\binaries
 - p17584181_111170_Generic.zip
 - wls1036_generic.jar
 
-c:\oracle_windows\templates
-- silent_wls.xml
-- fmw_silent_soa.rsp
-- fmw_silent_osb.rsp
-- nodemanager.properties
-- domain_osb_soa.py
-- startupAdminserver.py
-
-c:\oracle_windows\scripts
-- java_install.ps1
-- weblogic_10.3.6_install.ps1
-- weblogic_10.3.6_patch.ps1
-- soa_suite_install.ps1
-- osb_install.ps1
-- soa_suite_patch.ps1
-- weblogic_nodemanager.ps1
-- weblogic_domain.ps1
-- startup_adminserver.ps1
-
-c:\oracle_windows\temp
-- empty, used to extract all the zip files plus for generated scripts
 
 Install steps 
 -------------
@@ -88,7 +65,3 @@ Execute the following scripts
 - c:\oracle_windows\scripts\weblogic_nodemanager.ps1
 - c:\oracle_windows\scripts\weblogic_domain.ps1
 - c:\oracle_windows\scripts\startup_adminserver.ps1
-
-
-
-

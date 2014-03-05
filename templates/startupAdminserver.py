@@ -1,12 +1,12 @@
 # python script wls:wlscontrol
 
 wlsUser    = 'weblogic'
-password   = 'weblogic1'
+password   = '--password--'
 machine    = 'localhost'
 portNumber = 5556
 
 domain     = 'wls_osb_soa'
-domainPath = 'C:\\oracle\\weblogic_domains\\domains\\wls_osb_soa'
+domainPath = '--dom_dir--/wls_osb_soa'
 wlsServer  = 'AdminServer'
 
 nmConnect(wlsUser,password,machine,portNumber,domain,domainPath,'ssl')

@@ -1,1 +1,7 @@
-C:\oracle\product\11.1\middleware\wlserver_10.3\common\bin\wlst.cmd C:\oracle_windows\templates\startupAdminserver.py
+$AppProps = Get-Content ../wls.properties -Raw | convertfrom-stringdata 
+
+# create adminserver startup script
+iex "(Get-Content $($AppProps.main_location)/templates/startupAdminserver.py).replace('--password--', '$($AppProps.weblogic_password)').replace('--dom_dir--', '$($AppProps.dom_dir)') | Out-File $($AppProps.main_location)/temp/startupAdminserver.py -Encoding ASCII -Force"
+
+
+iex "$($AppProps.wl_dir)/common/bin/wlst.cmd $($AppProps.main_location)/temp/startupAdminserver.py"

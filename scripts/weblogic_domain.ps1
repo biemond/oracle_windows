@@ -29,5 +29,7 @@ $password | Add-Content "$($AppProps.dom_dir)/wls_osb_soa/servers/AdminServer/se
 
 
 iex "mkdir $($AppProps.dom_dir)/wls_osb_soa/servers/AdminServer/data/nodemanager -ErrorAction SilentlyContinue"
-#$startup = 'Arguments=-XX\:PermSize\=256m -XX\:MaxPermSize\=512m -Xms1024m -Xmx1024m  -Dweblogic.Stdout\=c\:/oracle/logs/AdminServer.out -Dweblogic.Stderr\=c\:/oracle/logs/AdminServer_err.out' 
-#$startup | Set-Content 'C:/oracle/weblogic_domains/domains/wls_osb_soa/servers/AdminServer/data/nodemanager/startup.properties'
+$startup = "Arguments=-XX:PermSize=256m -XX:MaxPermSize=512m -Xms1024m -Xmx1024m  -Dweblogic.Stdout=$($AppProps.log_dir)/AdminServer.out -Dweblogic.Stderr=$($AppProps.log_dir)/AdminServer_err.out"
+$startup.replace('=', '\=').replace(':', '\:') 
+
+$startup | Set-Content "$($AppProps.dom_dir)/wls_osb_soa/servers/AdminServer/data/nodemanager/startup.properties"
